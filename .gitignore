@@ -1,24 +1,12 @@
-﻿# Python environment and cache
-.venv/
-__pycache__/
-*.py[cod]
-
-# Secrets
 .env
 .env.*
-
-
-# Local dataset, databases, and other data
-data/*
-!data/creditcard.csv
-
-# Local prediction history
+!.env.example
+venv/
+__pycache__/
+*.pyc
+node_modules/
+data/creditcard.csv
+*.db
+data/creditcard.csv
+*.db
 static/prediction_history.json
-
-# Local backup files — never commit
-app_backup*.py
-app_before_*.py
-prediction_history_backup.json
-users_backup*.db
-*.sqlite
-*.sqlite3

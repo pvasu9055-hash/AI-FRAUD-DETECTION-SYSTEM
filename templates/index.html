@@ -23,10 +23,56 @@ h1{font-size:1.25rem}.sub{font-size:.72rem;color:#7f95ac;margin-top:3px}.live{ma
 table{width:100%;border-collapse:collapse;font-size:.74rem}th,td{padding:9px;border-bottom:1px solid #17273c;text-align:left}th{color:#8ba0b7;font-size:.62rem;text-transform:uppercase;background:#070d16}.badge{padding:3px 7px;border-radius:20px;font-size:.6rem;font-weight:800}.bf{background:#7f1d1d55;color:#fca5a5}.bl{background:#14532d55;color:#86efac}.wrap{overflow:auto}
 footer{text-align:center;padding:24px;color:#425972;font-size:.7rem;border-top:1px solid #17273c}
 @media(max-width:950px){.g4,.g3{grid-template-columns:1fr 1fr}.g2{grid-template-columns:1fr}.feature-grid{grid-template-columns:repeat(3,1fr)}}@media(max-width:600px){.g4,.g3,.grid,.risk{grid-template-columns:1fr}.feature-grid{grid-template-columns:1fr 1fr}.container{padding:13px}header{padding:13px 16px}}
+
+  .fs-user{display:flex;align-items:center;gap:10px;margin-left:16px}
+  .fs-name{color:#9fb3c8;font-size:13px}
+  .fs-logout{display:inline-block;padding:9px 18px;border-radius:10px;border:1px solid #ef4444;background:linear-gradient(180deg,#ef4444,#b91c1c);color:#fff;font-weight:700;font-size:13px;cursor:pointer;text-decoration:none;box-shadow:0 10px 20px -8px rgba(239,68,68,.6);transition:transform .2s,box-shadow .2s}
+  .fs-logout:hover{transform:translateY(-2px);box-shadow:0 16px 26px -8px rgba(239,68,68,.8)}
+
+  /* DASH-3D */
+  body{background:radial-gradient(1200px 700px at 10% -10%,#1e3a8a 0%,transparent 60%),radial-gradient(1000px 700px at 100% 0%,#0e7490 0%,transparent 55%),radial-gradient(900px 600px at 50% 120%,#6d28d9 0%,transparent 55%),#050816 !important;background-attachment:fixed !important}
+  header{background:linear-gradient(135deg,rgba(37,99,235,.35),rgba(6,182,212,.18)) !important;backdrop-filter:blur(14px);border:1px solid rgba(103,232,249,.25) !important;border-radius:18px;box-shadow:0 25px 50px -20px rgba(0,0,0,.8),0 0 40px rgba(34,211,238,.15)}
+  header .logo{background:linear-gradient(135deg,#2563eb,#22d3ee) !important;color:#fff;box-shadow:0 14px 30px rgba(37,99,235,.65);animation:d3float 4s ease-in-out infinite}
+  header h1{background:linear-gradient(90deg,#fff,#67e8f9,#a78bfa);-webkit-background-clip:text;background-clip:text;color:transparent !important}
+  .live{text-shadow:0 0 12px currentColor;animation:d3pulse 2s ease-in-out infinite}
+  .card,.stat{background:linear-gradient(145deg,rgba(30,41,89,.62),rgba(8,15,40,.72)) !important;backdrop-filter:blur(14px);border:1px solid rgba(125,211,252,.22) !important;border-radius:18px !important;box-shadow:0 30px 50px -25px rgba(0,0,0,.85),inset 0 1px 0 rgba(255,255,255,.12),0 0 30px rgba(59,130,246,.10);transition:transform .15s ease-out,box-shadow .25s;will-change:transform;transform-style:preserve-3d}
+  .card:hover,.stat:hover{box-shadow:0 40px 60px -25px rgba(0,0,0,.9),inset 0 1px 0 rgba(255,255,255,.2),0 0 45px rgba(34,211,238,.28)}
+  .stat{border-top:3px solid #38bdf8 !important}
+  .stat.red{border-top-color:#f43f5e !important;box-shadow:0 30px 50px -25px rgba(0,0,0,.85),0 0 40px rgba(244,63,94,.22)}
+  .stat.green{border-top-color:#22c55e !important;box-shadow:0 30px 50px -25px rgba(0,0,0,.85),0 0 40px rgba(34,197,94,.22)}
+  .stat.yellow{border-top-color:#facc15 !important;box-shadow:0 30px 50px -25px rgba(0,0,0,.85),0 0 40px rgba(250,204,21,.2)}
+  .stat .value{background:linear-gradient(90deg,#fff,#67e8f9);-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:0 8px 24px rgba(34,211,238,.35)}
+  .stat.red .value{background:linear-gradient(90deg,#fff,#fb7185);-webkit-background-clip:text;background-clip:text}
+  .stat.green .value{background:linear-gradient(90deg,#fff,#4ade80);-webkit-background-clip:text;background-clip:text}
+  .stat.yellow .value{background:linear-gradient(90deg,#fff,#fde047);-webkit-background-clip:text;background-clip:text}
+  .title{background:linear-gradient(90deg,#67e8f9,#a78bfa);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .btn{background:linear-gradient(180deg,#3b82f6,#1d4ed8) !important;border:1px solid rgba(147,197,253,.5) !important;color:#fff !important;border-radius:12px !important;font-weight:700;box-shadow:0 16px 26px -12px rgba(37,99,235,.9),inset 0 1px 0 rgba(255,255,255,.3);transition:transform .2s,box-shadow .2s}
+  .btn.alt{background:linear-gradient(180deg,#8b5cf6,#6d28d9) !important;box-shadow:0 16px 26px -12px rgba(124,58,237,.9),inset 0 1px 0 rgba(255,255,255,.3)}
+  .btn:hover{transform:translateY(-3px);box-shadow:0 24px 34px -12px rgba(34,211,238,.7),inset 0 1px 0 rgba(255,255,255,.4)}
+  .btn:active{transform:translateY(1px)}
+  .tab{border-radius:10px !important;transition:transform .2s,box-shadow .2s}
+  .tab:hover{transform:translateY(-2px)}
+  .tab.active{background:linear-gradient(180deg,#22d3ee,#0891b2) !important;color:#04121f !important;box-shadow:0 12px 22px -10px rgba(34,211,238,.8)}
+  @keyframes d3float{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+  @keyframes d3pulse{50%{opacity:.55}}
+  .fx{position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden;perspective:900px}
+  .orb{position:absolute;border-radius:50%;filter:blur(70px);opacity:.30;animation:d3drift 16s ease-in-out infinite alternate}
+  @keyframes d3drift{to{transform:translate(70px,-50px) scale(1.25)}}
+  .cube{position:absolute;width:var(--s);height:var(--s);transform-style:preserve-3d;animation:d3spin var(--d) linear infinite}
+  .cube i{position:absolute;inset:0;border:1px solid rgba(103,232,249,.5);background:rgba(34,211,238,.06);box-shadow:inset 0 0 18px rgba(34,211,238,.2)}
+  .cube i:nth-child(1){transform:translateZ(calc(var(--s)/2))}
+  .cube i:nth-child(2){transform:rotateY(180deg) translateZ(calc(var(--s)/2))}
+  .cube i:nth-child(3){transform:rotateY(90deg) translateZ(calc(var(--s)/2))}
+  .cube i:nth-child(4){transform:rotateY(-90deg) translateZ(calc(var(--s)/2))}
+  .cube i:nth-child(5){transform:rotateX(90deg) translateZ(calc(var(--s)/2))}
+  .cube i:nth-child(6){transform:rotateX(-90deg) translateZ(calc(var(--s)/2))}
+  @keyframes d3spin{from{transform:rotateX(0) rotateY(0)}to{transform:rotateX(360deg) rotateY(360deg)}}
+  @media (prefers-reduced-motion:reduce){.cube,.orb,.live,header .logo{animation:none}}
+  @media (max-width:900px){.cube{display:none}}
 </style>
 </head>
 <body>
-<header><div class="logo">FD</div><div><h1>AI Fraud Detection System</h1><div class="sub">Real-time fraud risk analysis • Flask • Machine Learning • 30-feature pipeline</div></div><div class="live">● SYSTEM LIVE</div></header>
+<header><div class="logo">FD</div><div><h1>AI Fraud Detection System</h1><div class="sub">Real-time fraud risk analysis • Flask • Machine Learning • 30-feature pipeline</div></div><div class="live">● SYSTEM LIVE</div><div class="fs-user"><span class="fs-name">{{ session.get('name', '') }}</span><a class="fs-logout" href="{{ url_for('logout') }}">Logout</a></div></header>
 <div class="container">
 
 <div class="g4">
@@ -114,6 +160,34 @@ async function loadHistory(){try{let a=await(await fetch('/history')).json();doc
 async function clearHistory(){if(!confirm('Clear prediction history?'))return;await fetch('/history/clear',{method:'POST'});loadHistory()}
 function charts(){donut=new Chart(document.getElementById('donut'),{type:'doughnut',data:{labels:['Legitimate','Fraudulent'],datasets:[{data:[1,1],backgroundColor:['#22c55e','#ef4444']}]},options:{cutout:'68%',plugins:{legend:{position:'bottom',labels:{color:'#cbd5e1'}}}}});amountChart=new Chart(document.getElementById('amountChart'),{type:'bar',data:{labels:['Legitimate','Fraudulent'],datasets:[{data:[0,0],backgroundColor:['#22c55ecc','#ef4444cc'],borderRadius:8}]},options:{plugins:{legend:{display:false}},scales:{y:{ticks:{color:'#9db0c5'},grid:{color:'#1d304a'}},x:{ticks:{color:'#9db0c5'},grid:{display:false}}}}});sessionChart=new Chart(document.getElementById('session'),{type:'bar',data:{labels:['Legitimate','Fraudulent'],datasets:[{data:[0,0],backgroundColor:['#22c55ecc','#ef4444cc'],borderRadius:8}]},options:{plugins:{legend:{display:false}},scales:{y:{beginAtZero:true,ticks:{color:'#9db0c5',stepSize:1},grid:{color:'#1d304a'}},x:{ticks:{color:'#9db0c5'},grid:{display:false}}}}})}
 loadFeatures();charts();loadStats();loadModel();loadComparison();loadHistory();
+</script>
+
+<div class="fx">
+  <div class="orb" style="width:420px;height:420px;left:-100px;top:8%;background:#2563eb"></div>
+  <div class="orb" style="width:360px;height:360px;right:-80px;top:40%;background:#06b6d4;animation-delay:-6s"></div>
+  <div class="orb" style="width:340px;height:340px;left:35%;bottom:-120px;background:#7c3aed;animation-delay:-10s"></div>
+  <div class="cube" style="--s:70px;--d:22s;left:4%;top:60%"><i></i><i></i><i></i><i></i><i></i><i></i></div><div class="cube" style="--s:46px;--d:16s;left:92%;top:18%"><i></i><i></i><i></i><i></i><i></i><i></i></div><div class="cube" style="--s:100px;--d:32s;left:84%;top:70%"><i></i><i></i><i></i><i></i><i></i><i></i></div><div class="cube" style="--s:34px;--d:12s;left:14%;top:8%"><i></i><i></i><i></i><i></i><i></i><i></i></div><div class="cube" style="--s:58px;--d:20s;left:50%;top:88%"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+</div>
+<script>
+(function () {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var els = document.querySelectorAll('.card, .stat');
+  els.forEach(function (el) {
+    el.addEventListener('mousemove', function (e) {
+      var r = el.getBoundingClientRect();
+      var x = (e.clientX - r.left) / r.width - 0.5;
+      var y = (e.clientY - r.top) / r.height - 0.5;
+      el.style.transform = 'perspective(900px) rotateY(' + (x * 7) + 'deg) rotateX(' + (-y * 7) + 'deg) translateZ(8px)';
+    });
+    el.addEventListener('mouseleave', function () { el.style.transform = ''; });
+  });
+  var cubes = document.querySelectorAll('.cube');
+  document.addEventListener('mousemove', function (e) {
+    var x = e.clientX / window.innerWidth - 0.5;
+    var y = e.clientY / window.innerHeight - 0.5;
+    cubes.forEach(function (c, i) { c.style.translate = (x * (i + 1) * 16) + 'px ' + (y * (i + 1) * 16) + 'px'; });
+  });
+})();
 </script>
 </body>
 </html>

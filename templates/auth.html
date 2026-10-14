@@ -192,6 +192,12 @@
             margin: 8px 0;
         }
 
+        .alert.info {
+            border-color: #1e3a8a;
+            background: #172554;
+            color: #bfdbfe;
+        }
+
         .security {
             margin-top: 18px;
             text-align: center;
@@ -226,6 +232,32 @@
                 padding: 32px 25px;
             }
         }
+    
+        /* 3D-FX */
+        .shell { transform-style: preserve-3d; transition: transform .15s ease-out; will-change: transform; box-shadow: 0 40px 80px -20px rgba(0,0,0,.7), 0 0 60px rgba(34,211,238,.12); }
+        .mark { box-shadow: 0 12px 30px rgba(37,99,235,.55); animation: fsfloat 4s ease-in-out infinite; }
+        .feature { transition: transform .25s; }
+        .feature:hover { transform: translateX(8px); }
+        .formside input { transition: transform .2s, box-shadow .2s; }
+        .formside input:focus { transform: translateY(-2px); box-shadow: 0 14px 30px -10px rgba(34,211,238,.45); }
+        .submit { box-shadow: 0 18px 30px -12px rgba(37,99,235,.7); transition: transform .2s, box-shadow .2s; }
+        .submit:hover { transform: translateY(-3px); box-shadow: 0 26px 40px -12px rgba(34,211,238,.6); }
+        .submit:active { transform: translateY(1px); }
+        @keyframes fsfloat { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+        .fx { position: fixed; inset: 0; z-index: -1; pointer-events: none; overflow: hidden; perspective: 900px; }
+        .orb { position: absolute; border-radius: 50%; filter: blur(60px); opacity: .35; animation: fsdrift 14s ease-in-out infinite alternate; }
+        @keyframes fsdrift { to { transform: translate(60px,-40px) scale(1.2); } }
+        .cube { position: absolute; width: var(--s); height: var(--s); transform-style: preserve-3d; animation: fsspin var(--d) linear infinite; }
+        .cube i { position: absolute; inset: 0; border: 1px solid rgba(103,232,249,.5); background: rgba(34,211,238,.06); box-shadow: inset 0 0 18px rgba(34,211,238,.18); }
+        .cube i:nth-child(1) { transform: translateZ(calc(var(--s) / 2)); }
+        .cube i:nth-child(2) { transform: rotateY(180deg) translateZ(calc(var(--s) / 2)); }
+        .cube i:nth-child(3) { transform: rotateY(90deg) translateZ(calc(var(--s) / 2)); }
+        .cube i:nth-child(4) { transform: rotateY(-90deg) translateZ(calc(var(--s) / 2)); }
+        .cube i:nth-child(5) { transform: rotateX(90deg) translateZ(calc(var(--s) / 2)); }
+        .cube i:nth-child(6) { transform: rotateX(-90deg) translateZ(calc(var(--s) / 2)); }
+        @keyframes fsspin { from { transform: rotateX(0deg) rotateY(0deg); } to { transform: rotateX(360deg) rotateY(360deg); } }
+        @media (prefers-reduced-motion: reduce) { .cube, .orb, .mark { animation: none; } }
+        @media (max-width: 900px) { .shell { transform: none !important; } .cube { display: none; } }
     </style>
 </head>
 
@@ -266,20 +298,44 @@
             <div class="eyebrow">Secure workspace</div>
 
             <h2>
-                {{ 'Create your account' if mode == 'register' else 'Welcome back' }}
+                {{ 'Create your account' if mode == 'register' else ('Verify your email' if mode == 'otp' else 'Welcome back') }}
             </h2>
 
             <p class="muted">
-                {{ 'Register to access the fraud analytics dashboard.' if mode == 'register'
-                   else 'Sign in to continue to your fraud analytics dashboard.' }}
+                {% if mode == 'otp' %}Enter the 6-digit code we sent to {{ pending_email }}.{% elif mode == 'register' %}Register to access the fraud analytics dashboard.{% else %}Sign in to continue to your fraud analytics dashboard.{% endif %}
             </p>
 
-            {% with messages = get_flashed_messages() %}
-                {% for message in messages %}
-                    <div class="alert">{{ message }}</div>
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% for category, message in messages %}
+                    <div class="alert {{ 'info' if category == 'info' else '' }}">{{ message }}</div>
                 {% endfor %}
             {% endwith %}
 
+            {% if mode == 'otp' %}
+            <form method="post" action="{{ url_for('verify_otp') }}" autocomplete="off">
+                <label for="otp">Verification code</label>
+                <input
+                    id="otp"
+                    name="otp"
+                    type="text"
+                    inputmode="numeric"
+                    pattern="[0-9]{6}"
+                    maxlength="6"
+                    placeholder="123456"
+                    autocomplete="one-time-code"
+                    required
+                    autofocus
+                >
+                <button class="submit" type="submit">Verify and continue →</button>
+            </form>
+            <form method="post" action="{{ url_for('resend_otp') }}">
+                <div class="switch">
+                    Did not get it?
+                    <button type="submit" style="background:none;border:0;padding:0;color:#67e8f9;font-weight:700;cursor:pointer;font-size:12px;">Resend code</button>
+                </div>
+            </form>
+            <div class="switch"><a href="{{ url_for('login') }}">Back to sign in</a></div>
+            {% else %}
             <form method="post" autocomplete="on">
                 {% if mode == 'register' %}
                     <label for="name">Full name</label>
@@ -338,6 +394,7 @@
                     {{ 'Sign in' if mode == 'register' else 'Create account' }}
                 </a>
             </div>
+            {% endif %}
 
             <div class="security">
                 🔒 Passwords are stored as salted hashes, not plain text.
@@ -345,5 +402,28 @@
         </section>
 
     </main>
+
+<div class="fx">
+  <div class="orb" style="width:380px;height:380px;left:-80px;top:10%;background:#2563eb"></div>
+  <div class="orb" style="width:320px;height:320px;right:-60px;bottom:5%;background:#06b6d4;animation-delay:-6s"></div>
+  <div class="cube" style="--s:70px;--d:22s;left:6%;top:68%"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+  <div class="cube" style="--s:46px;--d:16s;left:90%;top:14%"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+  <div class="cube" style="--s:90px;--d:30s;left:82%;top:72%"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+  <div class="cube" style="--s:34px;--d:12s;left:12%;top:10%"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+</div>
+<script>
+(function () {
+  var s = document.querySelector('.shell');
+  if (!s || window.innerWidth < 900 || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var cubes = document.querySelectorAll('.cube');
+  document.addEventListener('mousemove', function (e) {
+    var x = e.clientX / window.innerWidth - 0.5;
+    var y = e.clientY / window.innerHeight - 0.5;
+    s.style.transform = 'perspective(1400px) rotateY(' + (x * 8) + 'deg) rotateX(' + (-y * 8) + 'deg)';
+    cubes.forEach(function (c, i) { c.style.translate = (x * (i + 1) * 14) + 'px ' + (y * (i + 1) * 14) + 'px'; });
+  });
+  document.addEventListener('mouseleave', function () { s.style.transform = ''; });
+})();
+</script>
 </body>
 </html>
